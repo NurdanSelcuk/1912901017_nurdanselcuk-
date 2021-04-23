@@ -27,27 +27,51 @@ namespace _1912901017_nurdanselcuk
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string xmladresi= "https://www.sabah.com.tr/rss/ekonomi.xml";
-            WebRequest iste = WebRequest.Create(xmladresi);
-           // WebRequest istek = HttpWebRequest.Create(xmladresi);
+            XmlTextReader xmlAdres = new XmlTextReader("https://www.sabah.com.tr/rss/ekonomi.xml");
+            //string xmladresi= "https://www.sabah.com.tr/rss/ekonomi.xml";
+
+            //var XMLdokuman = new XmlDocument();
+             //XMLdokuman.Load(xmladresi);
+
+            /* WebRequest iste = WebRequest.Create(xmladresi);
+            WebRequest istek = HttpWebRequest.Create(xmladresi);
             WebResponse yanıt;
-            yanıt = iste.GetResponse();
+            yanıt = istek .GetResponse();
             StreamReader bilgiler = new StreamReader(yanıt.GetResponseStream());
             string gelen = bilgiler.ReadToEnd();
             int baslikbaslangic = gelen.IndexOf("<title>") + 7;
             int baslikbitis = gelen.Substring(baslikbaslangic).IndexOf("</title>");
             string baslik = gelen.Substring(baslikbaslangic, baslikbitis);
             MessageBox.Show(baslik);
+            DateTime tarih = Convert.ToDateTime(XMLdokuman.SelectSingleNode("//lastBuildDate").Attributes["tarih"].Value);
+            string Bas= XMLdokuman.SelectSingleNode("lastBuildDate/title { @kod= ''")
+            label1.Text= string.Format("tarih {0} ") */
+
+            while (xmlAdres.Read())
+            {
+                if ( xmlAdres.Name=="title")
+                {
+                    listBox1.Items.Add(xmlAdres.ReadString());
+                    
+
+                }
+                
+
+     
+
+            }
 
 
-            
-            //var XMLdokuman = new XmlDocument();
-           // XMLdokuman.Load(baslik);
 
 
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
