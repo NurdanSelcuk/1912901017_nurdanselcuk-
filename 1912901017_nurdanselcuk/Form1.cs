@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace _1912901017_nurdanselcuk
 {
@@ -15,6 +16,11 @@ namespace _1912901017_nurdanselcuk
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
