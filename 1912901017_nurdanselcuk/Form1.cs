@@ -8,8 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-using System.IO;
 using System.Net;
+using System.IO;
+using System.Xml.Linq;
+
+
+
 
 namespace _1912901017_nurdanselcuk
 {
@@ -25,41 +29,84 @@ namespace _1912901017_nurdanselcuk
 
         }
 
+
         private void button1_Click(object sender, EventArgs e)
         {
             XmlTextReader xmlAdres = new XmlTextReader("https://www.sabah.com.tr/rss/ekonomi.xml");
-            //string xmladresi= "https://www.sabah.com.tr/rss/ekonomi.xml";
 
-            //var XMLdokuman = new XmlDocument();
-             //XMLdokuman.Load(xmladresi);
-
-            /* WebRequest iste = WebRequest.Create(xmladresi);
-            WebRequest istek = HttpWebRequest.Create(xmladresi);
-            WebResponse yanıt;
-            yanıt = istek .GetResponse();
-            StreamReader bilgiler = new StreamReader(yanıt.GetResponseStream());
-            string gelen = bilgiler.ReadToEnd();
-            int baslikbaslangic = gelen.IndexOf("<title>") + 7;
-            int baslikbitis = gelen.Substring(baslikbaslangic).IndexOf("</title>");
-            string baslik = gelen.Substring(baslikbaslangic, baslikbitis);
-            MessageBox.Show(baslik);
-            DateTime tarih = Convert.ToDateTime(XMLdokuman.SelectSingleNode("//lastBuildDate").Attributes["tarih"].Value);
-            string Bas= XMLdokuman.SelectSingleNode("lastBuildDate/title { @kod= ''")
-            label1.Text= string.Format("tarih {0} ") */
 
             while (xmlAdres.Read())
             {
-                if ( xmlAdres.Name=="title")
+                if (xmlAdres.Name == "title")
                 {
                     listBox1.Items.Add(xmlAdres.ReadString());
-                    
+
 
                 }
-                
-
-     
 
             }
+            listBox1.Text =1912901017.text;
+            kaydet();
+
+             
+            
+            /*FileStream fs = new FileStream(@" 1912901017.txt", FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter swadi = new StreamWriter(fs);
+            swadi.WriteLine(listBox1.Text);
+            swadi.Flush();
+            swadi.Close();
+            fs.Close(); */
+
+
+
+            
+           
+        }
+         public void kaydet()
+         {
+            string url = "https://www.sabah.com.tr/rss/ekonomi.xml";
+            XDocument basl = XDocument.Load(url);
+            
+
+
+            string dosya_adi = "1912901017.txt";
+            string dosya_yolu = @"C:/ Users / PC / Desktop / NTP / 1912901017_nurdanselcuk / 1912901017_nurdanselcuk / Debug / 1912901017.txt";
+            string hedef_yol = System.IO.Path.Combine(dosya_yolu, dosya_adi);
+            if (System.IO.File.Exists(hedef_yol))
+            {
+                Console.WriteLine(listBox1);
+            }
+            else
+            {
+                FileStream fs = new FileStream("1912901017.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                fs.Close();
+            }
+            /*
+            FileStream ad = new FileStream(@"C:/Users/PC/Desktop/NTP/1912901017_nurdanselcuk/1912901017_nurdanselcuk/Debug/1912901017.txt", FileMode.Create, FileAccess.Write);
+            StreamWriter swadi = new StreamWriter(ad);
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                swadi.WriteLine(listBox1.Items[i].ToString());
+            }
+            ad.Close();
+            swadi.Close();*/
+
+            /*
+              if (File.Exists("1912901017.txt"))
+              {
+
+              }
+              else
+              {
+                  FileStream fs = new FileStream("1912901017.txt", FileMode.OpenOrCreate, FileAccess.Write);
+                  fs.Close();
+
+              }
+              StreamWriter sw = new StreamWriter("1912901017.txt");
+              sw.Flush();
+              sw.Close();*/
+
+
 
 
 
@@ -76,4 +123,8 @@ namespace _1912901017_nurdanselcuk
 
         }
     }
-}
+
+
+  }
+
+
